@@ -1,9 +1,17 @@
-var express = require('express');
-var router = express.Router();
+const express = require("express");
+const index = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+const array = [];
+
+index.get("/", (req, res) => {
+  res.json({ name: "frodo" });
 });
 
-module.exports = router;
+index.get("/test", (req, res) => res.json({ array }));
+
+index.post("/test", (req, res) => {
+  array.push(req.body.item);
+  res.send("success!");
+});
+
+module.exports = index;
